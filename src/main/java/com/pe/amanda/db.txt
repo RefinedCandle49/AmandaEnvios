@@ -1,0 +1,71 @@
+create table destinatario
+(
+    idDestinatario     int          not null
+        primary key,
+    nombreDestinatario varchar(255) null,
+    direccion          varchar(255) null,
+    telefono           varchar(15)  null
+)
+    engine = InnoDB;
+
+create table paquete
+(
+    idPaquete int            not null
+        primary key,
+    peso      decimal(10, 2) null,
+    medidas   varchar(50)    null
+)
+    engine = InnoDB;
+
+create table detallepaquete
+(
+    idDetallePaquete int          not null
+        primary key,
+    idPaquete        int          null,
+    descripcion      varchar(255) null,
+    constraint detallepaquete_ibfk_1
+        foreign key (idPaquete) references paquete (idPaquete)
+)
+    engine = InnoDB;
+
+create index idPaquete
+    on detallepaquete (idPaquete);
+
+create table remitente
+(
+    idRemitente     int          not null
+        primary key,
+    nombreRemitente varchar(255) null,
+    dniRemitente    varchar(8)   null,
+    telefono        varchar(15)  null
+)
+    engine = InnoDB;
+
+create table envio
+(
+    idGuia         int          not null
+        primary key,
+    idRemitente    int          null,
+    idDestinatario int          null,
+    idPaquete      int          null,
+    origen         varchar(255) null,
+    destino        varchar(255) null,
+    estado         varchar(50)  null,
+    constraint envio_ibfk_1
+        foreign key (idRemitente) references remitente (idRemitente),
+    constraint envio_ibfk_2
+        foreign key (idDestinatario) references destinatario (idDestinatario),
+    constraint envio_ibfk_3
+        foreign key (idPaquete) references paquete (idPaquete)
+)
+    engine = InnoDB;
+
+create index idDestinatario
+    on envio (idDestinatario);
+
+create index idPaquete
+    on envio (idPaquete);
+
+create index idRemitente
+    on envio (idRemitente);
+
