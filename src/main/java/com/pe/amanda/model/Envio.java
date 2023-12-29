@@ -19,13 +19,13 @@ public class Envio {
     private String destino;
     @Column(name = "estado")
     private String estado;
-    @ManyToOne
-    @JoinColumn(name = "idRemitente")
+    @OneToOne
+//    @JoinColumn(name = "idRemitente")
     private Remitente remitente;
-    @ManyToOne
-    @JoinColumn(name = "idDestinatario")
+    @OneToOne
+//    @JoinColumn(name = "idDestinatario")
     private Destinatario destinatario;
-    @ManyToOne
-    @JoinColumn(name = "idPaquete")
+    @OneToOne
+//    @JoinColumn(name = "idPaquete")
     private Paquete paquete;
 }

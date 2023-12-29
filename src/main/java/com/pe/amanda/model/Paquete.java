@@ -19,8 +19,4 @@ public class Paquete {
     private double peso;
     @Column(name = "medidas")
     private String medidas;
-    @OneToMany(mappedBy = "paquete")
-    private Set<DetallePaquete> detallePaquetes;
-    @OneToMany(mappedBy = "paquete")
-    private Set<Envio> envios;
 }

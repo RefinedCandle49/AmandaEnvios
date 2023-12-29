@@ -21,6 +21,4 @@ public class Remitente {
     private String dniRemitente;
     @Column(name = "telefono")
     private String telefono;
-    @OneToMany(mappedBy = "remitente")
-    private Set<Envio> envios;
 }

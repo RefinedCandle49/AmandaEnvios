@@ -16,6 +16,6 @@ public class DetallePaquete {
     @Column(name = "descripcion")
     private String descripcion;
     @ManyToOne
-    @JoinColumn(name = "idPaquete")
+//    @JoinColumn(name = "idPaquete")
     private Paquete paquete;
 }
