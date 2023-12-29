@@ -1,33 +1,31 @@
 package com.pe.amanda.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@Entity
-@Table (name = "envio")
+@Table(name = "envio")
 public class Envio {
     @Id
-    @Column(name = "idGuia", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idGuia;
-    @Column(name = "idRemitente", nullable = false)
-    @OneToOne
-    private Integer idRemitente;
-    @Column(name = "idDestinatario", nullable = false)
-    @OneToOne
-    private Integer idDestinatario;
-    @Column(name = "idPaquete", nullable = false)
-    @OneToOne
-    private Integer idPaquete;
-    @Column(name = "origen", length = 255, nullable = false)
+    @Column(name = "idGuia")
+    private int idGuia;
+    @Column(name = "origen")
     private String origen;
-    @Column(name = "destino", length = 255, nullable = false)
+    @Column(name = "destino")
     private String destino;
-    @Column(name = "estado", length = 255, nullable = false)
+    @Column(name = "estado")
     private String estado;
+    @ManyToOne
+    @JoinColumn(name = "idRemitente")
+    private Remitente remitente;
+    @ManyToOne
+    @JoinColumn(name = "idDestinatario")
+    private Destinatario destinatario;
+    @ManyToOne
+    @JoinColumn(name = "idPaquete")
+    private Paquete paquete;
 }

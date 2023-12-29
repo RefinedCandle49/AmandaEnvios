@@ -1,26 +1,21 @@
 package com.pe.amanda.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@Entity
-@Table(name = "detallePaquete")
-
+@Table(name = "detallepaquete")
 public class DetallePaquete {
     @Id
-    @Column(name = "idDetallePaquete", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDetallePaquete;
-    @Column(name = "idPaquete", nullable = false)
-    @OneToOne
-    private Integer idPaquete;
-    @Column(name = "descripcion", length = 255, nullable = false)
+    @Column(name = "idDetallePaquete")
+    private int idDetallePaquete;
+    @Column(name = "descripcion")
     private String descripcion;
-    public DetallePaquete(){
-    }
+    @ManyToOne
+    @JoinColumn(name = "idPaquete")
+    private Paquete paquete;
 }

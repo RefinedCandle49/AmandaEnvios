@@ -1,27 +1,26 @@
 package com.pe.amanda.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.Set;
+
+@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@Entity
 @Table(name = "remitente")
 public class Remitente {
     @Id
-    @Column(name = "idRemitente", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idRemitente")
     private int idRemitente;
-    @Column(name = "nombreRemitente", length = 255, nullable = false)
+    @Column(name = "nombreRemitente")
     private String nombreRemitente;
-    @Column(name = "dniRemitente", length = 8, nullable = false)
+    @Column(name = "dniRemitente")
     private String dniRemitente;
-    @Column(name = "telefono", length = 15, nullable = false)
+    @Column(name = "telefono")
     private String telefono;
-
-    public Remitente() {
-    }
+    @OneToMany(mappedBy = "remitente")
+    private Set<Envio> envios;
 }
