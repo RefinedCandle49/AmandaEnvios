@@ -1,0 +1,59 @@
+
+BASE DE DATOS:
+OBJETIVO: API encargada de ofrecer el servicio de seguimiento de paquetes para empresas de courier
+
+TABLAS:
+
+DATOS DE ENVÍO:
+    - idGuia
+    - idRemitente (fK)
+    - idDestinatario (fK)
+    - idPaquete (fK)
+    - origen
+    - destino
+    - estado
+    - observaciones
+
+DATOS DE REMITENTE:
+    - idRemitente
+    - nombreRemitente
+    - dniRemitente
+    - telefono
+
+DATOS DE DESTINATARIO:
+    - idDestinatario
+    - nombreDestinatario
+    - direccion
+    - telefono
+
+PAQUETE:
+    - idPaquete
+    - peso
+    - medidas
+
+DETALLEPAQUETE:
+    - idPaquete (fK)
+    - idDetallePaquete
+    - descripcion
+
+GET = /buscarguia/número de guia (INNERJOIN) traerá todo
+
+POST = - /agregar/remitente
+       - /agregar/destinatario
+       - /agregar/paquete
+       - /agregar/detalle
+       - /agregar/envio
+
+PUT = - /editar/remitente
+      - /editar/destinatario
+      - /editar/paquete
+      - /editar/detalle
+      - /editar/envio
+      - /cancelar/(numero de guia)
+
+DELETE = - /eliminar/(numero de guia)
+
+FALTARÍA AÑADIR UNA TABLA PARA CREDENCIALES
+CLIENTE
+ADMINISTRADOR
+USUARIO
