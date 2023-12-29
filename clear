@@ -1,0 +1,29 @@
+[33mcommit 74ced0c089f7559aecc86d7fc925cb3a4138422d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: RefinedCandle49 <valdezvargaskevin@gmail.com>
+Date:   Fri Dec 29 09:14:08 2023 -0500
+
+    Already working, foreign keys working succesfully
+
+[33mcommit a5c6fdeae4caa55c67c0eded8165e1e80a0bcc07[m
+Author: RefinedCandle49 <valdezvargaskevin@gmail.com>
+Date:   Fri Dec 29 08:00:14 2023 -0500
+
+    Remitente funcionando pero no correctamente, me pone la un dato adicional el cual es 'envíos'
+
+[33mcommit 9ade37cc5db31813b8be819fad1c08a7dbf73412[m[33m ([m[1;31morigin/detached[m[33m)[m
+Author: RefinedCandle49 <valdezvargaskevin@gmail.com>
+Date:   Thu Dec 28 22:16:26 2023 -0500
+
+    Autorización y JWT funcionando, pero la prueba listar aún no
+
+[33mcommit 2f2d919b920aa1aedf78dd9fe1d80c2f6ce324a1[m
+Author: RefinedCandle49 <valdezvargaskevin@gmail.com>
+Date:   Thu Dec 28 20:10:01 2023 -0500
+
+    Creo que arreglé los foreign key, cambié el código de todos los modelos ya ahora me crea correctamente la base de datos
+
+[33mcommit 289cdf3ac5e5f5cc830b1c140660c8e5e7281ec3[m
+Author: RefinedCandle49 <valdezvargaskevin@gmail.com>
+Date:   Thu Dec 28 19:20:11 2023 -0500
+
+    AmandaEnvios first commit sin JWT ni authentications ni autorizations

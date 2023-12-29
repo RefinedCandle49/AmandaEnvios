@@ -1,0 +1,9 @@
+https://docs.spring.io/spring-security/site/docs/4.2.15.RELEASE/apidocs/org/springframework/security/authentication/encoding/Md5PasswordEncoder.html
+https://docs.spring.io/spring-security/site/docs/4.2.15.RELEASE/apidocs/org/springframework/security/crypto/password/MessageDigestPasswordEncoder.html
+https://www.yawintutor.com/encode-decode-using-bcryptpasswordencoder-in-spring-boot-security/
+https://www.baeldung.com/spring-security-registration-password-encoding-bcrypt
+https://stackoverflow.com/questions/18084595/how-to-decrypt-hash-stored-by-bcrypt
+
+
+
+https://docs.spring.io/spring-security/site/docs/4.2.4.RELEASE/apidocs/org/springframework/security/crypto/password/PasswordEncoder.html
