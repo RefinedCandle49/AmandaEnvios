@@ -28,10 +28,7 @@ public class RemitenteController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @PostMapping("/new")
-    public String addNewUser(@RequestBody UserInfo userInfo) {
-        return service.addUser(userInfo);
-    }
+
     @GetMapping("/listar")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<Remitente> listarRemitentes(){
