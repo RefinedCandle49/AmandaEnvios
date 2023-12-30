@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.*;
 
 public class UserController {
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<String> ExceptionHandler(HttpMessageNotReadableException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ocurrió un error al realizar la operación. \n" + "Más información: " +ex.getMessage());
+    public ResponseEntity<String> ExceptionHandler(HttpMessageNotReadableException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ocurrió un error al realizar la operación. \n" + "Más información: " + e.getMessage());
     }
 
     @Autowired
@@ -39,7 +39,7 @@ public class UserController {
         try {
             return ResponseEntity.ok(service.addUser(userInfo));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al agregar el usuario: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al agregar el usuario. \n " + "Más información: " + e.getMessage());
         }
     }
 
