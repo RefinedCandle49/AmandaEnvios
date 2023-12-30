@@ -17,6 +17,6 @@ public class UserService {
     public String addUser(UserInfo userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
         repository.save(userInfo);
-        return "El usuario fue agregado al sistema exitosamente";
+        return "El usuario fue agregado exitosamente.";
     }
 }

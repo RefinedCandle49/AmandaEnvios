@@ -5,6 +5,7 @@ import com.pe.amanda.model.AuthRequest;
 import com.pe.amanda.service.JwtService;
 import com.pe.amanda.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,12 +38,16 @@ public class UserController {
 
     @PostMapping("/authenticate")
     public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
-        if (authentication.isAuthenticated()) {
-            return jwtService.generateToken(authRequest.getUsername());
-        } else {
-            throw new UsernameNotFoundException("invalid user request !");
+        try {
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+            if (authentication.isAuthenticated()) {
+                return jwtService.generateToken(authRequest.getUsername());
+            } else {
+                return "Usuario o contraseña inválidos";
+            }
+        } catch (Exception e) {
+            return "Usuario o contraseña inválidos";
         }
-
     }
+
 }
