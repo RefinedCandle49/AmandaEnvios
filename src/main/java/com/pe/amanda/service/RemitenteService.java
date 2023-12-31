@@ -21,6 +21,8 @@ public class RemitenteService {
         remitenteRepository.registrarRemitente(remitente.getIdRemitente(), remitente.getDniRemitente(), remitente.getNombreRemitente(), remitente.getTelefono());
     }
 
-
+    public void actualizarRemitente(Remitente remitente){
+        remitenteRepository.actualizarRemitente(remitente.getIdRemitente(), remitente.getDniRemitente(), remitente.getNombreRemitente(), remitente.getTelefono());
+    }
 
 }

@@ -25,4 +25,14 @@ public interface RemitenteRepository extends CrudRepository<Remitente, String> {
             @Param("telefono")String telefono
     );
 
+    @Transactional
+    @Modifying
+    @Query(value = "{call amandaenvios.sp_ActualizarRemitente(:idRemitente, :dniRemitente, :nombreRemitente, :telefono)}", nativeQuery = true)
+    public void actualizarRemitente(
+            @Param("idRemitente")Integer idRemitente,
+            @Param("dniRemitente")String dniRemitente,
+            @Param("nombreRemitente")String nombreRemitente,
+            @Param("telefono")String telefono
+    );
+
 }

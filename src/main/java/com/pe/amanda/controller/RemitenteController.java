@@ -35,7 +35,6 @@ public class RemitenteController {
     @PostMapping("/registrar")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String registrarRemitente(@RequestBody Remitente remitente) {
-        Map<String, Boolean> response = new HashMap<String, Boolean>();
         try {
             service.registrarRemitente(remitente);
             return "Creado correctamente";
@@ -45,5 +44,15 @@ public class RemitenteController {
 
     }
 
+    @PutMapping("/actualizar")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String actualizarRemitente(@RequestBody Remitente remitente) {
+        try {
+            service.actualizarRemitente(remitente);
+            return "Actualizado correctamente";
+        } catch (Exception e) {
+            return "Error al actualizar remitente. \n" + "Más información:" + e;
+        }
+    }
 
 }
