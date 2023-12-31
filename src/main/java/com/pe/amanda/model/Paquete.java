@@ -13,8 +13,8 @@ public class Paquete {
     @Id
     @Column(name = "idPaquete")
     private int idPaquete;
-    @Column(name = "peso")
+    @Column(name = "peso", nullable = false)
     private double peso;
-    @Column(name = "medidas")
+    @Column(name = "medidas", length = 50, nullable = false)
     private String medidas;
 }

@@ -12,10 +12,10 @@ public class Remitente {
     @Id
     @Column(name = "idRemitente")
     private int idRemitente;
-    @Column(name = "nombreRemitente")
+    @Column(name = "nombreRemitente", length = 100, nullable = false)
     private String nombreRemitente;
-    @Column(name = "dniRemitente")
+    @Column(name = "dniRemitente", length = 8, nullable = false)
     private String dniRemitente;
-    @Column(name = "telefono")
-    private String telefono;
+    @Column(name = "telefono", length = 9, nullable = false)
+    private String telefono;;
 }

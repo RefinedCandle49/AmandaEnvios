@@ -12,12 +12,14 @@ public class Envio {
     @Id
     @Column(name = "idGuia")
     private int idGuia;
-    @Column(name = "origen")
+    @Column(name = "origen", nullable = false)
     private String origen;
-    @Column(name = "destino")
+    @Column(name = "destino", nullable = false)
     private String destino;
     @Column(name = "estado")
     private String estado;
+    @Column(name = "observaciones")
+    private String observaciones;
     @OneToOne
 //    @JoinColumn(name = "idRemitente")
     private Remitente remitente;

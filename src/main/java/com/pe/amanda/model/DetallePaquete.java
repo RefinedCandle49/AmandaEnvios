@@ -12,7 +12,7 @@ public class DetallePaquete {
     @Id
     @Column(name = "idDetallePaquete")
     private int idDetallePaquete;
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
     @ManyToOne
 //    @JoinColumn(name = "idPaquete")

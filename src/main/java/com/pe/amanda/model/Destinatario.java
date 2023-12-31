@@ -13,10 +13,10 @@ public class Destinatario {
     @Id
     @Column(name = "idDestinatario")
     private int idDestinatario;
-    @Column(name = "nombreDestinatario")
+    @Column(name = "nombreDestinatario", length = 100, nullable = false)
     private String nombreDestinatario;
-    @Column(name = "direccion")
+    @Column(name = "direccion", nullable = false)
     private String direccion;
-    @Column(name = "telefono")
+    @Column(name = "telefono", length = 9, nullable = false)
     private String telefono;
 }
