@@ -2,6 +2,7 @@ package com.pe.amanda.filter;
 
 import com.pe.amanda.config.UserInfoUserDetailsService;
 import com.pe.amanda.service.JwtService;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Autowired
     private UserInfoUserDetailsService userDetailsService;
 
-    @Override
+/*    @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
         String token = null;
@@ -44,9 +45,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
-    }
+    }*/
 
-    /*@Override
+    @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             // Your JWT processing logic here
@@ -74,5 +75,5 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             return;
         }
         filterChain.doFilter(request, response);
-    }*/
+    }
 }
