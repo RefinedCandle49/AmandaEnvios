@@ -3,6 +3,7 @@ package com.pe.amanda.controller;
 import com.pe.amanda.model.Remitente;
 import com.pe.amanda.service.RemitenteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -39,7 +40,7 @@ public class RemitenteController {
             service.registrarRemitente(remitente);
             return "Creado correctamente";
         } catch (Exception e) {
-            return "Error al registrar remitente. \n" + "Más información:" + e;
+            return "Error al registrar remitente. \n" + "Más información: " + e;
         }
 
     }
@@ -51,7 +52,18 @@ public class RemitenteController {
             service.actualizarRemitente(remitente);
             return "Actualizado correctamente";
         } catch (Exception e) {
-            return "Error al actualizar remitente. \n" + "Más información:" + e;
+            return "Error al actualizar remitente. \n" + "Más información: " + e;
+        }
+    }
+
+    @DeleteMapping("/eliminar")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String eliminarRemitente(@RequestBody Remitente remitente) {
+        try {
+            service.eliminarRemitente(remitente);
+            return "Eliminado correctamente";
+        } catch (Exception e) {
+            return "Error al eliminar remitente. \n" + "Más información: " + e;
         }
     }
 

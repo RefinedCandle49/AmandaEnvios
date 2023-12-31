@@ -13,16 +13,37 @@ public class RemitenteService {
     @Autowired
     RemitenteRepository remitenteRepository;
 
-    public List<Remitente> listarRemitentes(){
+    public List<Remitente> listarRemitentes() {
         return remitenteRepository.listarRemitentes();
     }
 
-    public void registrarRemitente(Remitente remitente){
+    public void registrarRemitente(Remitente remitente) {
         remitenteRepository.registrarRemitente(remitente.getIdRemitente(), remitente.getDniRemitente(), remitente.getNombreRemitente(), remitente.getTelefono());
     }
 
-    public void actualizarRemitente(Remitente remitente){
-        remitenteRepository.actualizarRemitente(remitente.getIdRemitente(), remitente.getDniRemitente(), remitente.getNombreRemitente(), remitente.getTelefono());
+    public class EntityNotFoundException extends RuntimeException {
+        public EntityNotFoundException(String message) {
+            super(message);
+        }
     }
+
+    public String actualizarRemitente(Remitente remitente) {
+        if (!remitenteRepository.existsById(String.valueOf(remitente.getIdRemitente()))) {
+            throw new EntityNotFoundException("No existe un remitente con el id " + remitente.getIdRemitente());
+        }
+        remitenteRepository.actualizarRemitente(remitente.getIdRemitente(), remitente.getDniRemitente(), remitente.getNombreRemitente(), remitente.getTelefono());
+
+        return null;
+    }
+
+    public String eliminarRemitente(Remitente remitente) {
+        if (!remitenteRepository.existsById(String.valueOf(remitente.getIdRemitente()))) {
+            throw new EntityNotFoundException("No existe un remitente con el id " + remitente.getIdRemitente());
+        }
+        remitenteRepository.eliminarRemitente(remitente.getIdRemitente());
+
+        return null;
+    }
+
 
 }

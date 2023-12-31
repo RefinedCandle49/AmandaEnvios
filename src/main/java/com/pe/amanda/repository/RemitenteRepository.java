@@ -35,4 +35,11 @@ public interface RemitenteRepository extends CrudRepository<Remitente, String> {
             @Param("telefono")String telefono
     );
 
+    @Transactional
+    @Modifying
+    @Query(value = "{call amandaenvios.sp_EliminarRemitente(:idRemitente)}", nativeQuery = true)
+    public void eliminarRemitente(
+            @Param("idRemitente")Integer idRemitente
+    );
+
 }
