@@ -17,6 +17,10 @@ public class RemitenteService {
         return remitenteRepository.listarRemitentes();
     }
 
+    public void registrarRemitente(Remitente remitente){
+        remitenteRepository.registrarRemitente(remitente.getIdRemitente(), remitente.getDniRemitente(), remitente.getNombreRemitente(), remitente.getTelefono());
+    }
+
 
 
 }
