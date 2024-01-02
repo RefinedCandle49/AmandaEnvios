@@ -14,7 +14,8 @@ public class DetallePaquete {
     private int idDetallePaquete;
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
+    @Column(name = "cantidad", nullable = false)
+    private int cantidad;
     @ManyToOne
-//    @JoinColumn(name = "idPaquete")
     private Paquete paquete;
 }

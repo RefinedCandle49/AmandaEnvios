@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .requestMatchers("/usuario/new", "/usuario/authenticate").permitAll()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/remitente/**", "/destinatario/**")
+                .requestMatchers("/remitente/**", "/destinatario/**", "/detallepaquete/**", "/envio/**")
                 .authenticated()
                 .and()
                 .sessionManagement()
