@@ -15,4 +15,8 @@ public class DestinatarioService {
     public List<Destinatario> listarDestinatarios() {
         return destinatarioRespository.listarDestinatario();
     }
+
+    public void registrarDestinatario(Destinatario destinatario) {
+        destinatarioRespository.registrarDestinatario(destinatario.getIdDestinatario(), destinatario.getNombreDestinatario(), destinatario.getDireccion(), destinatario.getTelefono());
+    }
 }

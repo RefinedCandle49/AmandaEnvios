@@ -8,10 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,5 +28,17 @@ public class DestinatarioController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<Destinatario> listarDestinatarios() {
         return service.listarDestinatarios();
+    }
+
+    @PostMapping("/registrar")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String registrarDestinatario(@RequestBody Destinatario destinatario) {
+        try {
+            service.registrarDestinatario(destinatario);
+            return "Creado correctamente";
+        } catch (Exception e) {
+            return "Error al registrar destinatario. \n" + "Más información: " + e;
+        }
+
     }
 }
