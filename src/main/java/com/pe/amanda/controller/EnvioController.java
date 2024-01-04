@@ -2,6 +2,7 @@ package com.pe.amanda.controller;
 
 import com.pe.amanda.model.DetallePaquete;
 import com.pe.amanda.model.Envio;
+import com.pe.amanda.model.Remitente;
 import com.pe.amanda.service.EnvioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,17 @@ public class EnvioController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<Envio> listarEnvio(@PathVariable("id_guia") Integer id_guia) {
         return service.listarEnvio(id_guia);
+    }
+
+    @DeleteMapping("/eliminar")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String eliminarEnvio(@RequestBody Envio envio) {
+        try {
+            service.eliminarEnvio(envio);
+            return "Eliminado correctamente";
+        } catch (Exception e) {
+            return "Error al eliminar envio. \n" + "Más información: " + e;
+        }
     }
 
 }
