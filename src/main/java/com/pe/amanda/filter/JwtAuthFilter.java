@@ -50,7 +50,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            // Your JWT processing logic here
             String authHeader = request.getHeader("Authorization");
             String token = null;
             String username = null;
@@ -68,7 +67,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 }
             }
         } catch (SignatureException ex) {
-            // Create a custom response
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.setContentType("application/json");
             response.getWriter().write("{\"Error\":\"Token inválido o usuario no autorizado\"}");

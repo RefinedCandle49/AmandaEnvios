@@ -34,7 +34,7 @@ public class UserController {
 
     @Autowired
     private JwtService jwtService;
-    @PostMapping("/new")
+    @PostMapping("/nuevo")
     public ResponseEntity<String> addNewUser(@RequestBody UserInfo userInfo) {
         try {
             return ResponseEntity.ok(service.addUser(userInfo));
@@ -43,7 +43,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/authenticate")
+    @PostMapping("/autenticar")
     public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
