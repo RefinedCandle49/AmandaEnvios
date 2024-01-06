@@ -36,7 +36,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/usuario/nuevo", "/usuario/autenticar", "v2/**").permitAll()
+                .requestMatchers("/usuario/nuevo", "/usuario/autenticar").permitAll()
+                .requestMatchers(AUTH_WHITELIST).permitAll()
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/remitente/**", "/destinatario/**", "/detallepaquete/**", "/envio/**")
@@ -74,4 +75,12 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
+    private static final String[] AUTH_WHITELIST = {
+            "/api/v1/auth/**",
+            "/v3/api-docs/**",
+            "/v3/api-docs-yaml",
+            "/swagger-ui/**",
+            "/swagger-ui.html"
+    };
 }
