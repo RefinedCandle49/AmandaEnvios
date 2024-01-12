@@ -57,3 +57,9 @@ FALTARÍA AÑADIR UNA TABLA PARA CREDENCIALES
 CLIENTE
 ADMINISTRADOR
 USUARIO
+
+https://www.youtube.com/watch?v=VYvqF-J2JFc SWAGGER
+
+
+http://localhost:8080/swagger-ui/index.html
+https://springdoc.org/#getting-started
