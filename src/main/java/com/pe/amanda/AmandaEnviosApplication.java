@@ -15,18 +15,4 @@ public class AmandaEnviosApplication {
     public static void main(String[] args) {
         SpringApplication.run(AmandaEnviosApplication.class, args);
     }
-
-    @Bean
-    public OpenAPI springAmandaEnviosAPI() {
-        return new OpenAPI()
-                .info(new Info().title("API REST Amanda Envios")
-                        .termsOfService("Terms of service")
-                        .description("API's Rest de Amanda Envios, para clientes front-end")
-                        .version("1.0")
-                        .license(new License().name("All rights reserved").url("www.amandaenvios.pe")))
-                .externalDocs(new ExternalDocumentation()
-                        .description("Amanda Envios Documentation")
-                        .url("www.amandaenvios.pe/docs"));
-
-    }
 }

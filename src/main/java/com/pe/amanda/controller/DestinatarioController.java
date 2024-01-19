@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/destinatario")
 public class DestinatarioController {
 
@@ -23,7 +24,7 @@ public class DestinatarioController {
 
      @Autowired
     private DestinatarioService service;
-
+    
     @GetMapping("/listar")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<Destinatario> listarDestinatarios() {

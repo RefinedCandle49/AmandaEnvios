@@ -5,6 +5,7 @@ import com.pe.amanda.model.AuthRequest;
 import com.pe.amanda.service.JwtService;
 import com.pe.amanda.service.UserService;
 import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Hidden
 @RequestMapping("/usuario")
+@SecurityRequirement(name = "bearerAuth")
 
 public class UserController {
     @ExceptionHandler(HttpMessageNotReadableException.class)
