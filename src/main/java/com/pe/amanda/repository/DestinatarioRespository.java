@@ -25,4 +25,21 @@ public interface DestinatarioRespository extends CrudRepository<Destinatario, St
             @Param("direccion")String direccion,
             @Param("telefono")String telefono
     );
+
+    @Transactional
+    @Modifying
+    @Query(value = "{call amandaenvios.sp_ActualizarDestinatario(:id_destinatario, :direccion, :nombre_destinatario, :telefono)}", nativeQuery = true)
+    public void actualizarDestinatario(
+            @Param("id_destinatario")Integer id_destinatario,
+            @Param("direccion")String direccion,
+            @Param("nombre_destinatario")String nombre_destinatario,
+            @Param("telefono")String telefono
+    );
+
+    @Transactional
+    @Modifying
+    @Query(value = "{call amandaenvios.sp_EliminarDestinatario(:id_destinatario)}", nativeQuery = true)
+    public void eliminarDestinatario(
+            @Param("id_destinatario")Integer id_destinatario
+    );
 }

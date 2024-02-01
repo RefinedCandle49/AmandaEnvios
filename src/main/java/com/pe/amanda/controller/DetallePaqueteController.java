@@ -1,6 +1,6 @@
 package com.pe.amanda.controller;
 
-import com.pe.amanda.model.Destinatario;
+import com.pe.amanda.model.Destinatario; //Esto porque?
 import com.pe.amanda.model.DetallePaquete;
 import com.pe.amanda.service.DetallePaqueteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +30,27 @@ public class DetallePaqueteController {
         return service.listarDetallePaquete(paquete_id_paquete);
     }
 
+    @PostMapping("/registrar")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String registrarDetallePaquete(@RequestBody DetallePaquete detallePaquete) {
+        try {
+            service.registrarDetallePaquete(detallePaquete);
+            return "Creado correctamente";
+        } catch (Exception e) {
+            return "Error al registrar detalle del paquete. \n" + "Más información: " + e;
+        }
+
+    }
+	
+	@DeleteMapping("/eliminar")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String eliminarDetallePaquete(@RequestBody DetallePaquete detallePaquete) {
+        try {
+            service.eliminarDetallePaquete(detallePaquete);
+            return "Eliminado correctamente";
+        } catch (Exception e) {
+            return "Error al eliminar detalle del paquete. \n" + "Más información: " + e;
+        }
+    }
 
 }

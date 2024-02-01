@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .requestMatchers(AUTH_WHITELIST).permitAll()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/remitente/**", "/destinatario/**", "/detallepaquete/**", "/envio/**")
+                .requestMatchers("/remitente/**", "/destinatario/**", "/paquete/**", "/detallepaquete/**", "/envio/**")
                 .authenticated()
                 .and()
                 .cors(withDefaults())
