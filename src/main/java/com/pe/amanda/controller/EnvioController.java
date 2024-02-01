@@ -4,6 +4,7 @@ import com.pe.amanda.model.DetallePaquete;
 import com.pe.amanda.model.Envio;
 import com.pe.amanda.model.Remitente;
 import com.pe.amanda.service.EnvioService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/envio")
-
+@Tag(name = "Envío")
 public class EnvioController {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<String> ExceptionHandler(HttpMessageNotReadableException e) {

@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pe.amanda.model.Paquete;
 import com.pe.amanda.service.PaqueteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/paquete")
+@Tag(name = "Paquete")
 public class PaqueteController {
 	
 	@ExceptionHandler(HttpMessageNotReadableException.class)

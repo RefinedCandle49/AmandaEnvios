@@ -2,6 +2,7 @@ package com.pe.amanda.controller;
 
 import com.pe.amanda.model.Remitente;
 import com.pe.amanda.service.RemitenteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin
 @RequestMapping("/remitente")
+@Tag(name = "Remitente")
 public class RemitenteController {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)

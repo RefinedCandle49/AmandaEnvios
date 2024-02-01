@@ -3,6 +3,7 @@ package com.pe.amanda.controller;
 import com.pe.amanda.model.Destinatario; //Esto porque?
 import com.pe.amanda.model.DetallePaquete;
 import com.pe.amanda.service.DetallePaqueteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 
 @RequestMapping("/detallepaquete")
+@Tag(name = "Detalle-Paquete")
 public class DetallePaqueteController {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<String> ExceptionHandler(HttpMessageNotReadableException e) {
