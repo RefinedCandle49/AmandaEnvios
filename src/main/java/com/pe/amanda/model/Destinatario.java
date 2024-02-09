@@ -11,6 +11,7 @@ import lombok.Setter;
 public class Destinatario {
     @Id
     @Column(name = "idDestinatario")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDestinatario;
     @Column(name = "nombreDestinatario", length = 100, nullable = false)
     private String nombreDestinatario;

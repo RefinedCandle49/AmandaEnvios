@@ -3,6 +3,7 @@ package com.pe.amanda.service;
 import com.pe.amanda.model.DetallePaquete;
 import com.pe.amanda.repository.DetallePaqueteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

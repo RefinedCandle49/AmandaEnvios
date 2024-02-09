@@ -12,6 +12,7 @@ import lombok.Setter;
 public class Paquete {
     @Id
     @Column(name = "idPaquete")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPaquete;
     @Column(name = "peso", nullable = false)
     private double peso;

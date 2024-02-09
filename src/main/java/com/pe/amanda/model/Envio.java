@@ -11,6 +11,7 @@ import lombok.Setter;
 public class Envio {
     @Id
     @Column(name = "idGuia")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idGuia;
     @Column(name = "origen", nullable = false)
     private String origen;
