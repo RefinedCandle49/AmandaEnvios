@@ -17,7 +17,11 @@ public class DetallePaqueteService {
     }
 
     public void registrarDetallePaquete(DetallePaquete detallePaquete) {
-    	detallePaqueteRepository.registrarDetallePaquete(detallePaquete.getIdDetallePaquete(), detallePaquete.getCantidad(), detallePaquete.getDescripcion(), detallePaquete.getPaquete().getIdPaquete());
+    	try {
+    		detallePaqueteRepository.registrarDetallePaquete(detallePaquete.getIdDetallePaquete(), detallePaquete.getCantidad(), detallePaquete.getDescripcion(), detallePaquete.getPaquete().getIdPaquete());
+        } catch (DataIntegrityViolationException ex){
+    		throw new RuntimeException("Error al registrar detalle del paquete. El id del paquete no existe.");
+    	}
     }
 	
 	public class EntityNotFoundException extends RuntimeException {
