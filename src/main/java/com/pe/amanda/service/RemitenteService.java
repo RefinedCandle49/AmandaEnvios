@@ -13,12 +13,21 @@ public class RemitenteService {
     @Autowired
     RemitenteRepository remitenteRepository;
 
-    public List<Remitente> listarRemitentes() {
-        return remitenteRepository.listarRemitentes();
+    public Remitente saveRemitente(Remitente remitente){
+        return remitenteRepository.save(remitente);
     }
 
     public void registrarRemitente(Remitente remitente) {
         remitenteRepository.registrarRemitente(remitente.getIdRemitente(), remitente.getDniRemitente(), remitente.getNombreRemitente(), remitente.getTelefono());
+    }
+
+    public Integer existeRemitente(Remitente remitente){
+        Remitente remitente1 = remitenteRepository.findByNombreRemitenteAndDniRemitenteAndTelefono(remitente.getNombreRemitente(),remitente.getDniRemitente(), remitente.getTelefono());
+        return remitente1!=null ? remitente1.getIdRemitente(): null;
+    }
+
+    public List<Remitente> listarRemitentes() {
+        return remitenteRepository.listarRemitentes();
     }
 
     public class EntityNotFoundException extends RuntimeException {

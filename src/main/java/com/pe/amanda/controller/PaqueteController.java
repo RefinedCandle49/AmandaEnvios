@@ -31,18 +31,6 @@ public class PaqueteController {
 	@Autowired
     private PaqueteService service;
 	
-	@PostMapping("/registrar")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String registrarPaquete(@RequestBody Paquete paquete) {
-        try {
-            service.registrarPaquete(paquete);
-            return "Creado correctamente";
-        } catch (Exception e) {
-            return "Error al registrar paquete. \n" + "Más información: " + e;
-        }
-
-    }
-	
 	@DeleteMapping("/eliminar")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String eliminarPaquete(@RequestBody Paquete paquete) {

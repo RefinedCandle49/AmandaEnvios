@@ -1,7 +1,8 @@
 package com.pe.amanda.service;
 
-import com.pe.amanda.model.Envio;
-import com.pe.amanda.repository.EnvioRepository;
+import com.pe.amanda.dto.EnvioDTO;
+import com.pe.amanda.model.*;
+import com.pe.amanda.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,28 @@ import java.util.List;
 public class EnvioService{
 
     @Autowired
-    EnvioRepository envioRepository;
+    private EnvioRepository envioRepository;
+
+    @Autowired
+    private PaqueteRepository paqueteRepository;
+
+    @Autowired
+    private DetallePaqueteRepository detallePaqueteRepository;
+
+    @Autowired
+    private DestinatarioRepository destinatarioRepository;
+
+    @Autowired
+    private RemitenteRepository remitenteRepository;
+
+    @Autowired
+    private RemitenteService remitenteService;
+
+    @Autowired
+    private DestinatarioService destinatarioService;
+
+    @Autowired
+    private PaqueteService paqueteService;
 
     public List<Envio> listarEnvio(Integer id_guia){
         return envioRepository.listarEnvio(id_guia);
@@ -30,5 +52,66 @@ public class EnvioService{
         envioRepository.eliminarEnvio(envio.getIdGuia());
 
         return null;
+    }
+
+    public void crearEnvio(EnvioDTO envioDTO) {
+        Envio envio = new Envio();
+        envio.setOrigen(envioDTO.getOrigen());
+        envio.setDestino(envioDTO.getDestino());
+        envio.setEstado(envioDTO.getEstado());
+        envio.setObservaciones(envioDTO.getObservaciones());
+
+//        Agregar destinatario (con validación)
+        Integer destinatarioDB = destinatarioService.existeDestinatario(envioDTO.getDestinatario());
+        if (destinatarioDB != null) {
+            Destinatario destinatario = envioDTO.getDestinatario();
+            destinatario.setIdDestinatario(destinatarioDB);
+            envio.setDestinatario(destinatario);
+        } else {
+            Destinatario destinatario = destinatarioRepository.save(envioDTO.getDestinatario());
+            envio.setDestinatario(destinatario);
+        }
+
+//        Agregar remitente (con validación)
+        Integer remitenteDB = remitenteService.existeRemitente(envioDTO.getRemitente());
+        if (remitenteDB != null) {
+            Remitente remitente = envioDTO.getRemitente();
+            remitente.setIdRemitente(remitenteDB);
+            envio.setRemitente(remitente);
+        } else {
+            Remitente remitente = remitenteRepository.save(envioDTO.getRemitente());
+            envio.setRemitente(remitente);
+        }
+
+//        Agregar paquete (con validación)
+        Integer paqueteDB = paqueteService.existePaquete(envioDTO.getPaquete());
+        if (paqueteDB != null){
+            Paquete paquete = envioDTO.getPaquete();
+            paquete.setIdPaquete(paqueteDB);
+            envio.setPaquete(paquete);
+
+            List<DetallePaquete> detallePaquetes = envioDTO.getDetallePaquete();
+            for (DetallePaquete detalle : detallePaquetes) {
+                detalle.setPaquete(paquete);
+            }
+            detallePaqueteRepository.saveAll(detallePaquetes);
+        } else {
+            Paquete paquete = paqueteRepository.save(envioDTO.getPaquete());
+            envio.setPaquete(paquete);
+
+            List<DetallePaquete> detallePaquetes = envioDTO.getDetallePaquete();
+            for (DetallePaquete detalle : detallePaquetes) {
+                detalle.setPaquete(paquete);
+            }
+            detallePaqueteRepository.saveAll(detallePaquetes);
+        }
+
+//        List<DetallePaquete> detallePaquetes = envioDTO.getDetallePaquete();
+//        for (DetallePaquete detalle : detallePaquetes) {
+//            detalle.setPaquete(paquete);
+//        }
+//        detallePaqueteRepository.saveAll(detallePaquetes);
+
+        envioRepository.save(envio);
     }
 }

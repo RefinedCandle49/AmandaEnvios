@@ -1,5 +1,6 @@
 package com.pe.amanda.controller;
 
+import com.pe.amanda.dto.EnvioDTO;
 import com.pe.amanda.model.DetallePaquete;
 import com.pe.amanda.model.Envio;
 import com.pe.amanda.model.Remitente;
@@ -41,6 +42,17 @@ public class EnvioController {
             return "Eliminado correctamente";
         } catch (Exception e) {
             return "Error al eliminar envio. \n" + "Más información: " + e;
+        }
+    }
+
+    @PostMapping("/registrar")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String crearEnvio(@RequestBody EnvioDTO envioDTO) {
+        try {
+            service.crearEnvio(envioDTO);
+            return "Creado correctamente";
+        } catch (Exception e) {
+            return "Error al registrar remitente. \n" + "Más información: " + e;
         }
     }
 

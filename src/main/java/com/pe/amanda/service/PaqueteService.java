@@ -10,9 +10,14 @@ public class PaqueteService {
 	
 	@Autowired
 	PaqueteRepository paqueteRepository;
-	
-	public void registrarPaquete(Paquete paquete) {
-		paqueteRepository.registrarPaquete(paquete.getIdPaquete(), paquete.getMedidas(), paquete.getPeso());
+
+    public Paquete savePaquete(Paquete paquete) {
+        return paqueteRepository.save(paquete);
+    }
+
+    public Integer existePaquete(Paquete paquete){
+        Paquete paquete1 = paqueteRepository.findByPesoAndMedidas(paquete.getPeso(), paquete.getMedidas());
+        return paquete1!=null ? paquete1.getIdPaquete() : null;
     }
 	
 	public class EntityNotFoundException extends RuntimeException {

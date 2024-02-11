@@ -31,18 +31,6 @@ public class DetallePaqueteController {
     public List<DetallePaquete> listarDetallePaquete(@PathVariable("paquete_id_paquete") Integer paquete_id_paquete) {
         return service.listarDetallePaquete(paquete_id_paquete);
     }
-
-    @PostMapping("/registrar")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String registrarDetallePaquete(@RequestBody DetallePaquete detallePaquete) {
-        try {
-            service.registrarDetallePaquete(detallePaquete);
-            return "Creado correctamente";
-        } catch (Exception e) {
-            return "Error al registrar detalle del paquete. \n" + "Más información: " + e;
-        }
-
-    }
 	
 	@DeleteMapping("/eliminar")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")

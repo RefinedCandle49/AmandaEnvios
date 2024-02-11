@@ -13,24 +13,20 @@ public class DetallePaqueteService {
     @Autowired
     DetallePaqueteRepository detallePaqueteRepository;
 
+    public List<DetallePaquete> saveDetallePaquetes(List<DetallePaquete> detallePaquetes) {
+        return detallePaqueteRepository.saveAll(detallePaquetes);
+    }
+
     public List<DetallePaquete> listarDetallePaquete(Integer paquete_id_paquete){
         return detallePaqueteRepository.listarDetallePaquete(paquete_id_paquete);
     }
 
-    public void registrarDetallePaquete(DetallePaquete detallePaquete) {
-    	try {
-    		detallePaqueteRepository.registrarDetallePaquete(detallePaquete.getIdDetallePaquete(), detallePaquete.getCantidad(), detallePaquete.getDescripcion(), detallePaquete.getPaquete().getIdPaquete());
-        } catch (DataIntegrityViolationException ex){
-    		throw new RuntimeException("Error al registrar detalle del paquete. El id del paquete no existe.");
-    	}
-    }
-	
 	public class EntityNotFoundException extends RuntimeException {
         public EntityNotFoundException(String message) {
             super(message);
         }
     }
-	
+
 	public String eliminarDetallePaquete(DetallePaquete detallePaquete) {
         if (!detallePaqueteRepository.existsById(String.valueOf(detallePaquete.getIdDetallePaquete()))) {
             throw new EntityNotFoundException("No existe un Detalle de Paquete con el id " + detallePaquete.getIdDetallePaquete());

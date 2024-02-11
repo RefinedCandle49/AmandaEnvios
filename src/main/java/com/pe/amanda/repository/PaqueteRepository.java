@@ -4,21 +4,15 @@ import com.pe.amanda.model.Paquete;
 
 import jakarta.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface PaqueteRepository extends CrudRepository<Paquete, String>{
-	
-	@Transactional
-    @Modifying
-    @Query(value = "{call amandaenvios.sp_RegistrarPaquete(:idPaquete, :medidas, :peso)}", nativeQuery = true)
-    void registrarPaquete(
-            @Param("idPaquete")Integer idPaquete,
-            @Param("medidas")String medidas,
-            @Param("peso")Double peso
-    );
+public interface PaqueteRepository extends JpaRepository<Paquete, String> {
+
+    Paquete findByPesoAndMedidas(double peso, String medidas);
 	
 	@Transactional
     @Modifying

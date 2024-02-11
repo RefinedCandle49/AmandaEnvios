@@ -2,6 +2,7 @@ package com.pe.amanda.repository;
 
 import com.pe.amanda.model.Remitente;
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RemitenteRepository extends CrudRepository<Remitente, String> {
+public interface RemitenteRepository extends JpaRepository<Remitente, String> {
+
+    Remitente findByNombreRemitenteAndDniRemitenteAndTelefono(String nombreRemitente,String dni, String telefono);
     @Query(value = "{call amandaenvios.sp_ListarRemitentes()}", nativeQuery = true)
     public List<Remitente> listarRemitentes();
 

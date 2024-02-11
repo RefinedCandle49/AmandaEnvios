@@ -33,18 +33,6 @@ public class DestinatarioController {
         return service.listarDestinatarios();
     }
 
-    @PostMapping("/registrar")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String registrarDestinatario(@RequestBody Destinatario destinatario) {
-        try {
-            service.registrarDestinatario(destinatario);
-            return "Creado correctamente";
-        } catch (Exception e) {
-            return "Error al registrar destinatario. \n" + "Más información: " + e;
-        }
-
-    }
-
     @PutMapping("/actualizar")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String actualizarDestinatario(@RequestBody Destinatario destinatario) {

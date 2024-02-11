@@ -18,4 +18,5 @@ public class Paquete {
     private double peso;
     @Column(name = "medidas", length = 50, nullable = false)
     private String medidas;
+
 }
