@@ -17,6 +17,6 @@ public class Remitente {
     private String nombreRemitente;
     @Column(name = "dniRemitente", length = 11, nullable = false)
     private String dniRemitente;
-    @Column(name = "telefono", length = 9, nullable = true)
+    @Column(name = "telefono", length = 9)
     private String telefono;
 }
