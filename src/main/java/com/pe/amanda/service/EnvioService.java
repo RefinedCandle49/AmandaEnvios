@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EnvioService{
+public class EnvioService {
 
     @Autowired
     private EnvioRepository envioRepository;
@@ -35,7 +35,7 @@ public class EnvioService{
     @Autowired
     private PaqueteService paqueteService;
 
-    public List<Envio> listarEnvio(Integer id_guia){
+    public List<Envio> listarEnvio(Integer id_guia) {
         return envioRepository.listarEnvio(id_guia);
     }
 
@@ -45,7 +45,7 @@ public class EnvioService{
         }
     }
 
-    public String eliminarEnvio(Envio envio){
+    public String eliminarEnvio(Envio envio) {
         if (!envioRepository.existsById(String.valueOf(envio.getIdGuia()))) {
             throw new EntityNotFoundException("No existe un remitente con el id " + envio.getIdGuia());
         }
@@ -83,34 +83,14 @@ public class EnvioService{
             envio.setRemitente(remitente);
         }
 
-//        Agregar paquete (con validación)
-        Integer paqueteDB = paqueteService.existePaquete(envioDTO.getPaquete());
-        if (paqueteDB != null){
-            Paquete paquete = envioDTO.getPaquete();
-            paquete.setIdPaquete(paqueteDB);
-            envio.setPaquete(paquete);
+        Paquete paquete = paqueteRepository.save(envioDTO.getPaquete());
+        envio.setPaquete(paquete);
 
-            List<DetallePaquete> detallePaquetes = envioDTO.getDetallePaquete();
-            for (DetallePaquete detalle : detallePaquetes) {
-                detalle.setPaquete(paquete);
-            }
-            detallePaqueteRepository.saveAll(detallePaquetes);
-        } else {
-            Paquete paquete = paqueteRepository.save(envioDTO.getPaquete());
-            envio.setPaquete(paquete);
-
-            List<DetallePaquete> detallePaquetes = envioDTO.getDetallePaquete();
-            for (DetallePaquete detalle : detallePaquetes) {
-                detalle.setPaquete(paquete);
-            }
-            detallePaqueteRepository.saveAll(detallePaquetes);
+        List<DetallePaquete> detallePaquetes = envioDTO.getDetallePaquete();
+        for (DetallePaquete detalle : detallePaquetes) {
+            detalle.setPaquete(paquete);
         }
-
-//        List<DetallePaquete> detallePaquetes = envioDTO.getDetallePaquete();
-//        for (DetallePaquete detalle : detallePaquetes) {
-//            detalle.setPaquete(paquete);
-//        }
-//        detallePaqueteRepository.saveAll(detallePaquetes);
+        detallePaqueteRepository.saveAll(detallePaquetes);
 
         envioRepository.save(envio);
     }

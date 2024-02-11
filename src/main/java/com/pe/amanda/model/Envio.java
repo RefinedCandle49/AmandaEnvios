@@ -25,7 +25,7 @@ public class Envio {
     private Remitente remitente;
     @ManyToOne
     private Destinatario destinatario;
-    @ManyToOne
+    @OneToOne
 //    @JoinColumn(name = "idPaquete")
     private Paquete paquete;
 }
