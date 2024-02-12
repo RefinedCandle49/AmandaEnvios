@@ -94,4 +94,12 @@ public class EnvioService {
 
         envioRepository.save(envio);
     }
+
+    public String actualizarEnvio(Envio envio) {
+        if (!envioRepository.existsById(String.valueOf(envio.getIdGuia()))) {
+            throw new EntityNotFoundException("No existe un envío con el id " + envio.getIdGuia());
+        }
+        envioRepository.actualizarEnvio(envio.getIdGuia(), envio.getDestino(), envio.getEstado(), envio.getObservaciones(), envio.getOrigen());
+        return null;
+    }
 }

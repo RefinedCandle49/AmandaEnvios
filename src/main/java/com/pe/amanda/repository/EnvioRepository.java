@@ -22,4 +22,15 @@ public interface EnvioRepository extends JpaRepository<Envio, String> {
     public void eliminarEnvio(
             @Param("id_guia")Integer id_guia
     );
+
+    @Transactional
+    @Modifying
+    @Query(value = "{call amandaenvios.sp_ActualizarEnvio(:id_guia, :destino, :estado, :observaciones, :origen)}", nativeQuery = true)
+    public void actualizarEnvio(
+            @Param("id_guia")Integer id_guia,
+            @Param("destino")String destino,
+            @Param("estado")String estado,
+            @Param("observaciones")String observaciones,
+            @Param("origen")String origen
+    );
 }

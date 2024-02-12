@@ -56,4 +56,15 @@ public class EnvioController {
         }
     }
 
+    @PutMapping("/actualizar")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String actualizarEnvio(@RequestBody Envio envio) {
+        try {
+            service.actualizarEnvio(envio);
+            return "Actualizado correctamente";
+        } catch (Exception e) {
+            return "Error al actualizar envío. \n" + "Más información: " + e;
+        }
+    }
+
 }
