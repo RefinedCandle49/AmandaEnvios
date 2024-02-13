@@ -105,6 +105,7 @@ public class EnvioService {
         if (!envioRepository.existsById(envio.getIdGuia())) {
             throw new EntityNotFoundException("No existe un envío con el id " + envio.getIdGuia());
         }
+
         Integer remitenteDB = remitenteService.existeRemitente(envioDTO.getRemitente());
         if (remitenteDB != null) {
             Remitente remitente = envioDTO.getRemitente();
@@ -114,6 +115,17 @@ public class EnvioService {
             Remitente remitente = remitenteRepository.save(envioDTO.getRemitente());
             envio.setRemitente(remitente);
         }
-        envioRepository.actualizarEnvio(envio.getIdGuia(), envio.getDestino(), envio.getEstado(), envio.getObservaciones(), envio.getOrigen(), envio.getRemitente().getIdRemitente());
+
+        Integer destinatarioDB = destinatarioService.existeDestinatario(envioDTO.getDestinatario());
+        if (destinatarioDB != null) {
+            Destinatario destinatario = envioDTO.getDestinatario();
+            destinatario.setIdDestinatario(destinatarioDB);
+            envio.setDestinatario(destinatario);
+        } else {
+            Destinatario destinatario = destinatarioRepository.save(envioDTO.getDestinatario());
+            envio.setDestinatario(destinatario);
+        }
+
+        envioRepository.actualizarEnvio(envio.getIdGuia(), envio.getDestino(), envio.getEstado(), envio.getObservaciones(), envio.getOrigen(), envio.getRemitente().getIdRemitente(), envio.getDestinatario().getIdDestinatario());
     }
 }

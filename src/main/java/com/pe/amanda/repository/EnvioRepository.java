@@ -25,13 +25,14 @@ public interface EnvioRepository extends JpaRepository<Envio, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "{call amandaenvios.sp_ActualizarEnvio(:id_guia, :destino, :estado, :observaciones, :origen, :idRemitente)}", nativeQuery = true)
+    @Query(value = "{call amandaenvios.sp_ActualizarEnvio(:id_guia, :destino, :estado, :observaciones, :origen, :idRemitente, :id_destinatario)}", nativeQuery = true)
     public void actualizarEnvio(
             @Param("id_guia")Integer id_guia,
             @Param("destino")String destino,
             @Param("estado")String estado,
             @Param("observaciones")String observaciones,
             @Param("origen")String origen,
-            @Param("idRemitente")Integer idRemitente
+            @Param("idRemitente")Integer idRemitente,
+            @Param("id_destinatario") Integer id_destinatario
     );
 }
