@@ -112,7 +112,9 @@ public class EnvioService {
             remitente.setIdRemitente(remitenteDB);
             envio.setRemitente(remitente);
         } else {
-            Remitente remitente = remitenteRepository.save(envioDTO.getRemitente());
+            Remitente remitente = envioDTO.getRemitente();
+            remitente.setIdRemitente(null);
+            remitenteRepository.save(envioDTO.getRemitente());
             envio.setRemitente(remitente);
         }
 
@@ -122,7 +124,9 @@ public class EnvioService {
             destinatario.setIdDestinatario(destinatarioDB);
             envio.setDestinatario(destinatario);
         } else {
-            Destinatario destinatario = destinatarioRepository.save(envioDTO.getDestinatario());
+            Destinatario destinatario = envioDTO.getDestinatario();
+            destinatario.setIdDestinatario(null);
+            destinatarioRepository.save(envioDTO.getDestinatario());
             envio.setDestinatario(destinatario);
         }
 

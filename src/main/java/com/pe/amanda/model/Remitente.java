@@ -12,7 +12,7 @@ public class Remitente {
     @Id
     @Column(name = "idRemitente")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRemitente;
+    private Integer idRemitente;
     @Column(name = "nombreRemitente", length = 100, nullable = false)
     private String nombreRemitente;
     @Column(name = "dniRemitente", length = 11, nullable = false)

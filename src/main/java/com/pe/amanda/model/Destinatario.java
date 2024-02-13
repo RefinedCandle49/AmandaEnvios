@@ -12,7 +12,7 @@ public class Destinatario {
     @Id
     @Column(name = "idDestinatario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idDestinatario;
+    private Integer idDestinatario;
     @Column(name = "nombreDestinatario", length = 100, nullable = false)
     private String nombreDestinatario;
     @Column(name = "direccion", nullable = false)
