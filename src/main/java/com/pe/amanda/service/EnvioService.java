@@ -95,11 +95,25 @@ public class EnvioService {
         envioRepository.save(envio);
     }
 
-    public String actualizarEnvio(Envio envio) {
+    public void actualizarEnvio(EnvioDTO envioDTO) {
+        Envio envio = new Envio();
+        envio.setIdGuia(envioDTO.getIdGuia());
+        envio.setDestino(envioDTO.getDestino());
+        envio.setEstado(envioDTO.getEstado());
+        envio.setObservaciones(envioDTO.getObservaciones());
+        envio.setOrigen(envioDTO.getOrigen());
         if (!envioRepository.existsById(envio.getIdGuia())) {
             throw new EntityNotFoundException("No existe un envío con el id " + envio.getIdGuia());
         }
-        envioRepository.actualizarEnvio(envio.getIdGuia(), envio.getDestino(), envio.getEstado(), envio.getObservaciones(), envio.getOrigen());
-        return null;
+        Integer remitenteDB = remitenteService.existeRemitente(envioDTO.getRemitente());
+        if (remitenteDB != null) {
+            Remitente remitente = envioDTO.getRemitente();
+            remitente.setIdRemitente(remitenteDB);
+            envio.setRemitente(remitente);
+        } else {
+            Remitente remitente = remitenteRepository.save(envioDTO.getRemitente());
+            envio.setRemitente(remitente);
+        }
+        envioRepository.actualizarEnvio(envio.getIdGuia(), envio.getDestino(), envio.getEstado(), envio.getObservaciones(), envio.getOrigen(), envio.getRemitente().getIdRemitente());
     }
 }
