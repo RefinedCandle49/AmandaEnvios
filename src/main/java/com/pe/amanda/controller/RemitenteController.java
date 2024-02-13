@@ -2,6 +2,7 @@ package com.pe.amanda.controller;
 
 import com.pe.amanda.model.Remitente;
 import com.pe.amanda.service.RemitenteService;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -20,6 +21,7 @@ import java.util.Map;
 @CrossOrigin
 @RequestMapping("/remitente")
 @Tag(name = "Remitente")
+@Hidden
 public class RemitenteController {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
@@ -34,28 +36,6 @@ public class RemitenteController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<Remitente> listarRemitentes() {
         return service.listarRemitentes();
-    }
-
-    @PutMapping("/actualizar")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String actualizarRemitente(@RequestBody Remitente remitente) {
-        try {
-            service.actualizarRemitente(remitente);
-            return "Actualizado correctamente";
-        } catch (Exception e) {
-            return "Error al actualizar remitente. \n" + "Más información: " + e;
-        }
-    }
-
-    @DeleteMapping("/eliminar")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String eliminarRemitente(@RequestBody Remitente remitente) {
-        try {
-            service.eliminarRemitente(remitente);
-            return "Eliminado correctamente";
-        } catch (Exception e) {
-            return "Error al eliminar remitente. \n" + "Más información: " + e;
-        }
     }
 
 }

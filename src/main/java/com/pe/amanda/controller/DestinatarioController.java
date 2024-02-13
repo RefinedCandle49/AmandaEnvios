@@ -3,6 +3,7 @@ package com.pe.amanda.controller;
 import com.pe.amanda.model.Destinatario;
 import com.pe.amanda.model.Remitente;
 import com.pe.amanda.service.DestinatarioService;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@Hidden
 @RequestMapping("/destinatario")
 @Tag(name = "Destinatario")
 public class DestinatarioController {
@@ -31,27 +33,5 @@ public class DestinatarioController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<Destinatario> listarDestinatarios() {
         return service.listarDestinatarios();
-    }
-
-    @PutMapping("/actualizar")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String actualizarDestinatario(@RequestBody Destinatario destinatario) {
-        try {
-            service.actualizarDestinatario(destinatario);
-            return "Actualizado correctamente";
-        } catch (Exception e) {
-            return "Error al actualizar destinatario. \n" + "Más información: " + e;
-        }
-    }
-
-    @DeleteMapping("/eliminar")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String eliminarDestinatario(@RequestBody Destinatario destinatario) {
-        try {
-            service.eliminarDestinatario(destinatario);
-            return "Eliminado correctamente";
-        } catch (Exception e) {
-            return "Error al eliminar destinatario. \n" + "Más información: " + e;
-        }
     }
 }

@@ -31,16 +31,5 @@ public class DetallePaqueteController {
     public List<DetallePaquete> listarDetallePaquete(@PathVariable("paquete_id_paquete") Integer paquete_id_paquete) {
         return service.listarDetallePaquete(paquete_id_paquete);
     }
-	
-	@DeleteMapping("/eliminar")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String eliminarDetallePaquete(@RequestBody DetallePaquete detallePaquete) {
-        try {
-            service.eliminarDetallePaquete(detallePaquete);
-            return "Eliminado correctamente";
-        } catch (Exception e) {
-            return "Error al eliminar detalle del paquete. \n" + "Más información: " + e;
-        }
-    }
 
 }

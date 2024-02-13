@@ -30,15 +30,4 @@ public class PaqueteController {
 	
 	@Autowired
     private PaqueteService service;
-	
-	@DeleteMapping("/eliminar")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public String eliminarPaquete(@RequestBody Paquete paquete) {
-        try {
-            service.eliminarPaquete(paquete);
-            return "Eliminado correctamente";
-        } catch (Exception e) {
-            return "Error al eliminar paquete. \n" + "Más información: " + e;
-        }
-    }
 }
