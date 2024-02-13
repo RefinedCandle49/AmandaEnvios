@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 public class EnvioDTO {
+    private int idGuia;
     private String origen;
     private String destino;
     private String estado;

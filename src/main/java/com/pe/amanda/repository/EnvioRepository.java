@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EnvioRepository extends JpaRepository<Envio, String> {
+public interface EnvioRepository extends JpaRepository<Envio, Integer> {
     @Query(value = "{call amandaenvios.sp_ListarEnvio(:id_guia)}", nativeQuery = true)
     public List<Envio> listarEnvio(@Param("id_guia")Integer id_guia);
 

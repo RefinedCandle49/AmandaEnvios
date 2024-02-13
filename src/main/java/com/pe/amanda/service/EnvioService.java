@@ -46,7 +46,7 @@ public class EnvioService {
     }
 
     public String eliminarEnvio(Envio envio) {
-        if (!envioRepository.existsById(String.valueOf(envio.getIdGuia()))) {
+        if (!envioRepository.existsById(envio.getIdGuia())) {
             throw new EntityNotFoundException("No existe un remitente con el id " + envio.getIdGuia());
         }
         envioRepository.eliminarEnvio(envio.getIdGuia());
@@ -96,7 +96,7 @@ public class EnvioService {
     }
 
     public String actualizarEnvio(Envio envio) {
-        if (!envioRepository.existsById(String.valueOf(envio.getIdGuia()))) {
+        if (!envioRepository.existsById(envio.getIdGuia())) {
             throw new EntityNotFoundException("No existe un envío con el id " + envio.getIdGuia());
         }
         envioRepository.actualizarEnvio(envio.getIdGuia(), envio.getDestino(), envio.getEstado(), envio.getObservaciones(), envio.getOrigen());
