@@ -1,6 +1,6 @@
 package com.pe.amanda.controller;
 
-import com.pe.amanda.model.Destinatario; //Esto porque?
+import com.pe.amanda.model.Destinatario;
 import com.pe.amanda.model.DetallePaquete;
 import com.pe.amanda.service.DetallePaqueteService;
 import io.swagger.v3.oas.annotations.tags.Tag;

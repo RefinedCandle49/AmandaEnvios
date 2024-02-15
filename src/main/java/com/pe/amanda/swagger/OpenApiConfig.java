@@ -13,25 +13,24 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @OpenAPIDefinition(
 		info = @Info(
 				contact = @Contact(
-						name = "Zegel",
-						email = "zegel@la.com",
-						url = "www.zegel.pe"
+						name = "AmandaEnvios",
+						email = "soporte@amandaenvios.pe",
+						url = "www.amandaenvios.pe"
 				),
-				description = "API's Rest de Amanda Envios, para clientes front-end",
+				description = "API diseñada para empresas de Courier que buscan integrar un sistema de seguimientos de paquetes. Para solicitar más información, por favor escríbanos al siguiente correo soporte@amandaenvios.pe",
 				title = "API REST Amanda Envios",
 				version = "1.0",
 				license = @License(
-						name = "All rights reserved",
+						name = "Todos los derechos reservados",
 						url = "www.amandaenvios.pe"
 				),
-				termsOfService = "Terms of service"
+				termsOfService = "Términos de servicio"
 		),
 		servers = {
 				@Server(
-						description = "PROD ENV",
+						description = "SERVER AMANDA",
 						url = "http://localhost:8080"
 				)
-				// EL OTRO SERVER NO SE QUE ES
 		},
 		security = {
 				@SecurityRequirement(
