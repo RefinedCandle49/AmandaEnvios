@@ -12,7 +12,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@Hidden
 public class EnvioDTO {
     private int idGuia;
     private String origen;
